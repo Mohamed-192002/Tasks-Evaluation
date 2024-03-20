@@ -7,7 +7,12 @@ namespace TasksEvaluation.Core.Validations
     {
         public AssignmentValidator()
         {
-            RuleFor(c => c.Title).NotEmpty().NotNull();
+            RuleFor(a => a.Title)
+                           .NotEmpty().WithMessage("Title is required.")
+                           .MaximumLength(255).WithMessage("Title must not exceed 255 characters.");
+
+            RuleFor(a => a.Description)
+                .MaximumLength(1000).WithMessage("Description must not exceed 1000 characters.");
 
         }
     }

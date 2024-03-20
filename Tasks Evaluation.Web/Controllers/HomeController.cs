@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Tasks_Evaluation.Web.Models;
+using Tasks_Evaluation.Core.Entities;
 
 namespace Tasks_Evaluation.Web.Controllers
 {

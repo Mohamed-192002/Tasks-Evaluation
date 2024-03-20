@@ -6,7 +6,9 @@ namespace TasksEvaluation.Core.Validations
     {
         public GroupValidator()
         {
-            RuleFor(g=>g.Title).NotEmpty().NotNull();
+            RuleFor(g => g.Title)
+                .NotEmpty().WithMessage("Title is required")
+                .MaximumLength(100).WithMessage("Title must not exceed 100 characters!");
 
         }
     }

@@ -13,7 +13,8 @@ namespace TasksEvaluation.Core.Validations
     {
         public EvaluationGradeValidator()
         {
-            RuleFor(g => g.Grade).NotEmpty().NotNull();
+            RuleFor(e => e.Grade)
+                .NotNull().WithMessage("Grade must have a value");
         }
     }
 }

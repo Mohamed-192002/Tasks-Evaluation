@@ -1,4 +1,4 @@
-namespace Tasks_Evaluation.Web.Models
+namespace Tasks_Evaluation.Core.Entities
 {
     public class ErrorViewModel
     {

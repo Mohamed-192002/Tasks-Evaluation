@@ -13,6 +13,10 @@ namespace TasksEvaluation.Core.Validations
     {
         public SolutionValidator()
         {
+            RuleFor(s => s.Notes)
+               .NotEmpty().WithMessage("Notes is required")
+               .MaximumLength(150).WithMessage("Title must not exceed 150 characters!");
+
             RuleFor(s => s.SolutionFile).NotNull().NotEmpty()
                 .Must(file => 
                 file.EndsWith(".pdf") || file.EndsWith(".zip") || file.EndsWith(".jpeg") || file.EndsWith(".jpg") || file.EndsWith(".png"))

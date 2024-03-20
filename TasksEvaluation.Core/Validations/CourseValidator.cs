@@ -7,7 +7,12 @@ namespace TasksEvaluation.Core.Validations
     {
         public CourseValidator()
         {
-            RuleFor(c=>c.Title).NotEmpty().NotNull();
+            RuleFor(c => c.Title)
+               .NotEmpty().WithMessage("Title is required")
+               .MaximumLength(100).WithMessage("Title must not exceed 100 characters!");
+
+            RuleFor(c => c.IsCompleted)
+                .NotNull().WithMessage("IsComleted must not be null.");
 
         }
     }

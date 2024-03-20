@@ -190,7 +190,7 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.ToTable("Assignments");
+                    b.ToTable("Assignments", (string)null);
                 });
 
             modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.Course", b =>
@@ -219,7 +219,7 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Courses", (string)null);
                 });
 
             modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.EvaluationGrade", b =>
@@ -245,7 +245,7 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EvaluationGrades");
+                    b.ToTable("EvaluationGrades", (string)null);
                 });
 
             modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.Group", b =>
@@ -276,7 +276,7 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Groups");
+                    b.ToTable("Groups", (string)null);
                 });
 
             modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.Solution", b =>
@@ -321,7 +321,7 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Solutions");
+                    b.ToTable("Solutions", (string)null);
                 });
 
             modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.Student", b =>
@@ -364,7 +364,7 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.ToTable("Students");
+                    b.ToTable("Students", (string)null);
                 });
 
             modelBuilder.Entity("TasksEvaluation.Core.Entities.General.AppUser", b =>
