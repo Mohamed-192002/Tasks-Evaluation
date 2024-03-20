@@ -1,10 +1,4 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TasksEvaluation.Core.Entities;
 using TasksEvaluation.Core.Entities.Business;
 
 namespace TasksEvaluation.Core.Validations
@@ -14,7 +8,6 @@ namespace TasksEvaluation.Core.Validations
         public SolutionValidator()
         {
             RuleFor(s => s.Notes)
-               .NotEmpty().WithMessage("Notes is required")
                .MaximumLength(150).WithMessage("Title must not exceed 150 characters!");
 
             RuleFor(s => s.SolutionFile).NotNull().NotEmpty()

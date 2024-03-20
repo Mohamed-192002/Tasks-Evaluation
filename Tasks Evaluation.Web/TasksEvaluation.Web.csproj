@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TasksEvaluation.DataAccess\TasksEvaluation.DataAccess.csproj" />
+    <ProjectReference Include="..\TasksEvaluation.DataAccess\TasksEvaluation.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

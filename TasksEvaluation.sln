@@ -5,9 +5,9 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksEvaluation.Core", "TasksEvaluation.Core\TasksEvaluation.Core.csproj", "{9A27D67A-4CC9-41DE-8715-F2D27DDAED24}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksEvaluation.DataAccess", "TasksEvaluation.DataAccess\TasksEvaluation.DataAccess.csproj", "{425A5BE6-012D-4944-B72A-279452A2A240}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksEvaluation.Infrastructure", "TasksEvaluation.DataAccess\TasksEvaluation.Infrastructure.csproj", "{425A5BE6-012D-4944-B72A-279452A2A240}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks Evaluation.Web", "Tasks Evaluation.Web\Tasks Evaluation.Web.csproj", "{960794C9-22C4-4538-B06E-D10FFFE34AE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksEvaluation.Web", "Tasks Evaluation.Web\TasksEvaluation.Web.csproj", "{960794C9-22C4-4538-B06E-D10FFFE34AE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -12,7 +12,7 @@ namespace TasksEvaluation.Core.Validations
                .MaximumLength(100).WithMessage("Title must not exceed 100 characters!");
 
             RuleFor(c => c.IsCompleted)
-                .NotNull().WithMessage("IsComleted must not be null.");
+                .NotNull().WithMessage("IsCompleted must not be null.");
 
         }
     }
