@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Text.RegularExpressions;
+using System.Reflection;
 using TasksEvaluation.Core.Entities.Business;
 using TasksEvaluation.Core.Entities.General;
 using Group = TasksEvaluation.Core.Entities.Business.Group;
@@ -21,5 +21,11 @@ namespace Tasks_Evaluation.DataAccess.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            base.OnModelCreating(builder);
+        }
     }
 }

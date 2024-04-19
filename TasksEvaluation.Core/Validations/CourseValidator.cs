@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using TasksEvaluation.Core.Entities.Business;
+using TasksEvaluation.Core.Dtos;
 
 namespace TasksEvaluation.Core.Validations
 {
-    public class CourseValidator : AbstractValidator<Course>
+    public class CourseValidator : AbstractValidator<CourseDto>
     {
         public CourseValidator()
         {
@@ -13,7 +13,6 @@ namespace TasksEvaluation.Core.Validations
 
             RuleFor(c => c.IsCompleted)
                 .NotNull().WithMessage("IsCompleted must not be null.");
-
         }
     }
 }

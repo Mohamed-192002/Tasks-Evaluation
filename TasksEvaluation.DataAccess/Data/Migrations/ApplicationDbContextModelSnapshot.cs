@@ -17,7 +17,7 @@ namespace Tasks_Evaluation.Web.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("ProductVersion", "8.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -164,11 +164,13 @@ namespace Tasks_Evaluation.Web.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("Deadline")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime?>("EntryDate")
                         .HasColumnType("datetime2");
@@ -181,7 +183,8 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime?>("UpDate")
                         .HasColumnType("datetime2");
@@ -190,7 +193,7 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.ToTable("Assignments", (string)null);
+                    b.ToTable("Assignments");
                 });
 
             modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.Course", b =>
@@ -212,14 +215,15 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime?>("UpDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses", (string)null);
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.EvaluationGrade", b =>
@@ -245,7 +249,7 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EvaluationGrades", (string)null);
+                    b.ToTable("EvaluationGrades");
                 });
 
             modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.Group", b =>
@@ -267,7 +271,8 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime?>("UpDate")
                         .HasColumnType("datetime2");
@@ -276,7 +281,7 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Groups", (string)null);
+                    b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.Solution", b =>
@@ -301,11 +306,14 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.Property<string>("Notes")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("SolutionFile")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasAnnotation("FileNamePattern", "\\.(pdf|zip|jpeg|jpg|png)$");
 
                     b.Property<int?>("StudentId")
                         .HasColumnType("int");
@@ -321,7 +329,7 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Solutions", (string)null);
+                    b.ToTable("Solutions");
                 });
 
             modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.Student", b =>
@@ -341,7 +349,8 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("GroupId")
                         .HasColumnType("int");
@@ -355,7 +364,8 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime?>("UpDate")
                         .HasColumnType("datetime2");
@@ -364,7 +374,7 @@ namespace Tasks_Evaluation.Web.Data.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.ToTable("Students", (string)null);
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("TasksEvaluation.Core.Entities.General.AppUser", b =>
@@ -504,15 +514,15 @@ namespace Tasks_Evaluation.Web.Data.Migrations
             modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.Solution", b =>
                 {
                     b.HasOne("TasksEvaluation.Core.Entities.Business.Assignment", "Assignment")
-                        .WithMany()
+                        .WithMany("Solutions")
                         .HasForeignKey("AssignmentId");
 
                     b.HasOne("TasksEvaluation.Core.Entities.Business.EvaluationGrade", "Grade")
-                        .WithMany()
+                        .WithMany("Solutions")
                         .HasForeignKey("GradeId");
 
                     b.HasOne("TasksEvaluation.Core.Entities.Business.Student", "Student")
-                        .WithMany()
+                        .WithMany("Solutions")
                         .HasForeignKey("StudentId");
 
                     b.Navigation("Assignment");
@@ -531,9 +541,19 @@ namespace Tasks_Evaluation.Web.Data.Migrations
                     b.Navigation("Group");
                 });
 
+            modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.Assignment", b =>
+                {
+                    b.Navigation("Solutions");
+                });
+
             modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.Course", b =>
                 {
                     b.Navigation("Groups");
+                });
+
+            modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.EvaluationGrade", b =>
+                {
+                    b.Navigation("Solutions");
                 });
 
             modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.Group", b =>
@@ -541,6 +561,11 @@ namespace Tasks_Evaluation.Web.Data.Migrations
                     b.Navigation("Assignments");
 
                     b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("TasksEvaluation.Core.Entities.Business.Student", b =>
+                {
+                    b.Navigation("Solutions");
                 });
 #pragma warning restore 612, 618
         }

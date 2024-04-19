@@ -1,20 +1,15 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TasksEvaluation.Core.Entities;
-using TasksEvaluation.Core.Entities.Business;
+using TasksEvaluation.Core.Dtos;
 
 namespace TasksEvaluation.Core.Validations
 {
-    public class EvaluationGradeValidator : AbstractValidator<EvaluationGrade>
+    public class EvaluationGradeValidator : AbstractValidator<EvaluationGradeDto>
     {
         public EvaluationGradeValidator()
         {
             RuleFor(e => e.Grade)
-                .NotNull().WithMessage("Grade must have a value");
+                .NotNull().WithMessage("Grade must have a value")
+                .InclusiveBetween("0", "100").WithMessage("Grade must be between 0 and 100");
         }
     }
 }
